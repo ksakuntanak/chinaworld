@@ -225,8 +225,6 @@ $(document).ready(function(){
             gender: gender
         };
 
-        console.log(data);
-
         $.ajax({
             'url': url_base + "api/registerUser",
             'type': "POST",
