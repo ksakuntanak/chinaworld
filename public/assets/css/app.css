@@ -1,0 +1,243 @@
+/* custom CSS for app */
+body {
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 810px;
+    max-width: 810px;
+    min-height: 800px;
+    max-height: 800px;
+}
+body.index {
+    background: url("../img/background.png") no-repeat center;
+}
+body.app {
+    background: url("../img/background-2.png") no-repeat center;
+}
+#start-balloon {
+    position: relative;
+    top: 132px;
+    left: 75px;
+}
+#start-button {
+    position: relative;
+    top: 144px;
+    left: 266px;
+}
+.block {
+    width: 100%;
+    min-height: 810px;
+    height: 810px;
+    max-height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 9998;
+}
+.loading {
+    width: 220px;
+    position: relative;
+    top: -255px;
+    left: 295px;
+    z-index: 9999;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: #FFF;
+}
+#like-popup {
+    position: relative;
+    top: -300px;
+    left: 170px;
+    z-index: 9999;
+    width: 470px;
+    background-color: #FFF;
+    padding: 10px;
+}
+#register-panel {
+    position: relative;
+    top: 207px;
+    left: 97px;
+    width: 616px;
+    height: 431px;
+    background: url("../img/register-panel.png") no-repeat center;
+    padding: 40px;
+}
+.register-panel-header {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.white-space {
+    padding-bottom: 10px;
+}
+#menu-bar {
+    width: auto;
+    position: relative;
+    top: 165px;
+    left: 17px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.menu {
+    float: left;
+}
+.menu-1 {
+    position: relative;
+    left: 0px;
+}
+.menu-2 {
+    position: relative;
+    left: 0px;
+}
+.menu-3 {
+    position: relative;
+    left: 0px;
+}
+.menu-4 {
+    position: relative;
+    left: 0px;
+}
+#menu-1-panel {
+    position: relative;
+    top: 245px;
+    left: 24px;
+    width: 762px;
+    height: 510px;
+    background: url("../img/menu-1-panel.png") no-repeat center;
+    padding: 40px;
+}
+#menu-2-panel {
+     position: relative;
+     top: 245px;
+     left: 19px;
+     width: 772px;
+     height: 510px;
+     background: url("../img/menu-2-panel.png") no-repeat center;
+     padding: 40px;
+ }
+#menu-3-panel {
+    position: relative;
+    top: 245px;
+    left: 24px;
+    width: 762px;
+    height: 510px;
+    background: url("../img/menu-3-panel.png") no-repeat center;
+    padding: 40px;
+}
+#menu-4-panel {
+    position: relative;
+    top: 245px;
+    left: 19px;
+    width: 772px;
+    height: 510px;
+    background: url("../img/menu-4-panel.png") no-repeat center;
+}
+#photo-preview {
+    width: 222px;
+    height: 221px;
+    background: url("../img/photo-frame.png") no-repeat center;
+    padding: 11px;
+}
+#photo-preview-container {
+    display: inline-block;
+    height: 200px;
+    width: 200px;
+    overflow: hidden;
+}
+#photo-preview-container img {
+    height: 100%;
+    position: relative;
+    left: 50%;
+    min-width: 100%;
+    transform: translateX(-50%);
+}
+#photo-browse-button {
+    z-index: 10;
+    position: relative;
+    top: -50px;
+    left: -2px;
+}
+#confirm-upload-popup {
+    z-index: 9999;
+    position: relative;
+    top: -265px;
+    left: 97px;
+    width: 616px;
+    height: 354px;
+    background: url("../img/confirm-upload-popup.png") no-repeat center;
+    padding: 40px;
+    text-align: center;
+}
+#confirm-upload-popup-close {
+    width: 45px;
+    height: 44px;
+    z-index: 9999;
+    position: relative;
+    top: -670px;
+    left: 705px;
+}
+#preview-photo-frame {
+    width: 222px;
+    height: 221px;
+    background: url("../img/photo-frame.png") no-repeat center;
+    padding: 11px;
+}
+#preview-photo-frame-container {
+    display: inline-block;
+    width:200px;
+    height:200px;
+    overflow:hidden;
+}
+#preview-photo-frame-container img {
+    height: 100%;
+    position: relative;
+    left: 50%;
+    min-width: 100%;
+    transform: translateX(-50%);
+}
+#preview-message {
+    text-align: left;
+    font-size:16px;
+}
+.checked {
+    width: 220px;
+    position: relative;
+    top: -255px;
+    left: 295px;
+    z-index: 9999;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: #FFF;
+}
+#gallery {
+    position: relative;
+    top: -30px;
+    left: 6px;
+    width: 760px;
+    height: 430px;
+    padding: 10px;
+    overflow: auto;
+}
+.image-frame {
+    float: left;
+    margin: 7px;
+    width: 166px;
+    height: 166px;
+    padding: 3px;
+    background: url("../img/gallery-frame.png") no-repeat center;
+}
+.image-frame-container {
+    display: inline-block;
+    height: 160px;
+    width: 160px;
+    overflow: hidden;
+}
+.image-frame-container img{
+    height: 100%;
+    position: relative;
+    left: 50%;
+    min-width: 100%;
+    transform: translateX(-50%);
+}

@@ -1,0 +1,7 @@
+[07-Feb-2015 15:32:13] PHP Warning:  Unexpected character in input:  '\' (ASCII=92) state=1 in /home/intbizth/public_html/chinaworld/public/index.php on line 57
+[07-Feb-2015 15:32:13] PHP Notice:  Use of undefined constant __DIR__ - assumed '__DIR__' in /home/intbizth/public_html/chinaworld/public/index.php on line 22
+[07-Feb-2015 15:32:13] PHP Notice:  Use of undefined constant __DIR__ - assumed '__DIR__' in /home/intbizth/public_html/chinaworld/public/index.php on line 27
+[07-Feb-2015 15:32:13] PHP Notice:  Use of undefined constant __DIR__ - assumed '__DIR__' in /home/intbizth/public_html/chinaworld/public/index.php on line 32
+[07-Feb-2015 15:32:13] PHP Notice:  Use of undefined constant __DIR__ - assumed '__DIR__' in /home/intbizth/public_html/chinaworld/public/index.php on line 37
+[07-Feb-2015 15:32:13] PHP Warning:  require(/classes/autoloader.php) [<a href='function.require'>function.require</a>]: failed to open stream: No such file or directory in /home/intbizth/public_html/chinaworld/public/index.php on line 44
+[07-Feb-2015 15:32:13] PHP Fatal error:  require() [<a href='function.require'>function.require</a>]: Failed opening required '/classes/autoloader.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/intbizth/public_html/chinaworld/public/index.php on line 44
