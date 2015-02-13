@@ -1,9 +1,3 @@
-FB.init({
-    appId      : '439397266212203',
-    xfbml      : true,
-    version    : 'v2.2'
-});
-
 var registered = false;
 
 var photo_data;
@@ -31,40 +25,16 @@ var dataURItoBlob = function(dataURI,mime) {
 
 $(document).ready(function(){
 
-    /* check user login */
-    FB.getLoginStatus(function(response) {
-        if (response.status === 'connected') {
-            FB.api('/me',function(res){
+    $('.loading').hide();
+    $('.block').hide();
 
-                $('#fb-id').val(res.id);
-                $('#fb-name').val(res.name);
+    /* index */
+    $('#start-button').click(function(){
 
-                $.ajax({
-                    'url': url_base + "api/saveUser",
-                    'type': "POST",
-                    'dataType': 'json',
-                    data: {
-                        fb_id: res.id,
-                        fb_name: res.name
-                    },
-                    success: function(res){
-
-                        console.log(res);
-
-                        if(res.success){
-                            registered = (res.registered && (res.registered == 1 || res.registered == "1"))?true:false;
-                        }
-
-                        $('.loading').hide();
-                        $('.block').hide();
-
-                    }
-                });
-
-            });
-        } else {
-            FB.login(function(){
-
+        /** **/
+        /* check user login */
+        FB.getLoginStatus(function(response) {
+            if (response.status === 'connected') {
                 FB.api('/me',function(res){
 
                     $('#fb-id').val(res.id);
@@ -80,31 +50,55 @@ $(document).ready(function(){
                         },
                         success: function(res){
 
-                            console.log(res);
-
                             if(res.success){
                                 registered = (res.registered && (res.registered == 1 || res.registered == "1"))?true:false;
                             }
 
-                            $('.loading').hide();
-                            $('.block').hide();
+                            if(registered)
+                                self.location.href = url_base+"app/upload";
+                            else
+                                self.location.href = url_base+"app/register";
 
                         }
                     });
 
                 });
+            } else {
+                FB.login(function(){
 
-            }, {scope: 'publish_actions,user_likes'});
-        }
-    });
+                    FB.api('/me',function(res){
 
-    /* index */
-    $('#start-button').click(function(){
+                        $('#fb-id').val(res.id);
+                        $('#fb-name').val(res.name);
 
-        if(registered)
-            self.location.href = url_base+"app/upload";
-        else
-            self.location.href = url_base+"app/register";
+                        $.ajax({
+                            'url': url_base + "api/saveUser",
+                            'type': "POST",
+                            'dataType': 'json',
+                            data: {
+                                fb_id: res.id,
+                                fb_name: res.name
+                            },
+                            success: function(res){
+
+                                if(res.success){
+                                    registered = (res.registered && (res.registered == 1 || res.registered == "1"))?true:false;
+                                }
+
+                                if(registered)
+                                    self.location.href = url_base+"app/upload";
+                                else
+                                    self.location.href = url_base+"app/register";
+
+                            }
+                        });
+
+                    });
+
+                }, {scope: 'publish_actions'});
+            }
+        });
+        /** **/
 
         /*FB.api('/me/likes/120717091292823',function(res){
 
@@ -290,7 +284,7 @@ $(document).ready(function(){
     $('#submit-button').click(function(){
 
         $('#preview-photo').attr('src',photo_data);
-        $('#preview-message').html($('#message').val()+'<br><strong>#CHINAWORLD 6THANNIVERSARY<br>ศูนย์ผ้าม้วนใหญ่ที่สุด</strong>strong>');
+        $('#preview-message').html($('#message').val());
 
         $('.block').show();
 
@@ -343,7 +337,7 @@ $(document).ready(function(){
 
                         data.append("access_token",accessToken);
                         data.append("source",blob);
-                        data.append("message",message+" #CHINAWORLD 6THANNIVERSARY ศูนย์ผ้าม้วนใหญ่ที่สุด");
+                        data.append("message",message);
 
                         $.ajax({
                             url: "https://graph.facebook.com/me/photos?access_token="+accessToken,
