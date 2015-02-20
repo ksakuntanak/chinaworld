@@ -17,7 +17,7 @@
         <![endif]-->
 
         <!-- custom css -->
-        <link href="<?php echo Uri::base(); ?>public/assets/css/app.css" rel="stylesheet">
+        <link href="<?php echo Uri::base(); ?>public/assets/css/app.css?ts=<?php echo date('YmdHis'); ?>" rel="stylesheet">
 
     </head>
     <body class="<?php echo (Uri::segment(2)&&Uri::segment(2)!="index")?"app":"index"; ?>">
@@ -54,6 +54,6 @@
         <script type="text/javascript">
             var url_base = "<?php echo Uri::base(); ?>";
         </script>
-        <script src="<?php echo Uri::base(); ?>public/assets/js/app.js"></script>
+        <script src="<?php echo Uri::base(); ?>public/assets/js/app.js?ts=<?php echo date('YmdHis'); ?>"></script>
     </body>
 </html>

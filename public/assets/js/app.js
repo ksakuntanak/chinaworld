@@ -25,8 +25,75 @@ var dataURItoBlob = function(dataURI,mime) {
 
 $(document).ready(function(){
 
-    $('.loading').hide();
-    $('.block').hide();
+    $('.loading').show();
+    $('.block').show();
+	
+	setTimeout(function(){
+	
+		FB.getLoginStatus(function(response) {
+			if (response.status === 'connected') {
+				FB.api('/me',function(res){
+					
+					console.log("User ID: "+res.id);
+	
+					$('#fb-id').val(res.id);
+					$('#fb-name').val(res.name);
+	
+					$.ajax({
+						'url': url_base + "api/saveUser",
+						'type': "POST",
+						'dataType': 'json',
+						data: {
+							fb_id: res.id,
+							fb_name: res.name
+						},
+						success: function(res){
+							
+							$('.loading').hide();
+							$('.block').hide();
+	
+							if(res.success){
+								registered = (res.registered && (res.registered == 1 || res.registered == "1"))?true:false;
+							}
+	
+						}
+					});
+	
+				});
+			}  else {
+				FB.login(function(){
+	
+					FB.api('/me',function(res){
+						
+						console.log("User ID: "+res.id);
+	
+						$('#fb-id').val(res.id);
+						$('#fb-name').val(res.name);
+	
+						$.ajax({
+							'url': url_base + "api/saveUser",
+							'type': "POST",
+							'dataType': 'json',
+							data: {
+								fb_id: res.id,
+								fb_name: res.name
+							},
+							success: function(res){
+	
+								if(res.success){
+									registered = (res.registered && (res.registered == 1 || res.registered == "1"))?true:false;
+								}
+	
+							}
+						});
+	
+					});
+	
+				}, {scope: 'publish_actions'});
+			}
+		});
+	
+	},500);
 
     /* index */
     $('#start-button').click(function(){
@@ -282,9 +349,21 @@ $(document).ready(function(){
     });
 
     $('#submit-button').click(function(){
+		
+		var message = $('#message').val();
+		
+		if(!photo_data.length){
+			alert("กรุณาเลือกรูปภาพ");
+			return false;
+		}
+		
+		if(!message.length){
+			alert("กรุณากรอกคำบรรยายภาพ พร้อมข้อความ \"#CHINAWORLD 6THANNIVERSARY ศูนย์ผ้าม้วนใหญ่ที่สุด\"");	
+			return false;
+		}
 
         $('#preview-photo').attr('src',photo_data);
-        $('#preview-message').html($('#message').val());
+        $('#preview-message').html(message);
 
         $('.block').show();
 
