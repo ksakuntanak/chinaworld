@@ -23,80 +23,69 @@ var dataURItoBlob = function(dataURI,mime) {
 
 };
 
+window.fbAsyncInit = function() {
+    
+    try {
+
+        FB.init({
+            appId      : '439397266212203',
+            xfbml      : false,
+            version    : 'v2.2'
+        });
+
+        FB.getLoginStatus(function(response) {
+            if (response.status === 'connected') {
+                FB.api('/me',function(res){
+
+                    console.log("User ID: "+res.id);
+
+                    $('#fb-id').val(res.id);
+                    $('#fb-name').val(res.name);
+
+                    $('.loading').hide();
+                    $('.block').hide();
+
+                });
+            } else {
+                /*if(top.location.hostname != "apps.facebook.com" && (!controller.length || (controller == "app" && !method.length))){
+                    top.location.href = "https://apps.facebook.com/chinaworld_fashion/";
+                } else {*/
+                    $('.loading').hide();
+                    $('.block').hide();
+                //}
+            }
+        });
+    
+    } catch(e){
+        console.log(e);
+        /*if(top.location.hostname != "apps.facebook.com" && (!controller.length || (controller == "app" && !method.length))){
+            top.location.href = "https://apps.facebook.com/chinaworld_fashion/";
+        } else {*/
+            $('.loading').hide();
+            $('.block').hide();
+        //}
+    }
+    
+};
+
+(function(d, s, id){
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
 $(document).ready(function(){
 
     $('.loading').show();
     $('.block').show();
-	
-	setTimeout(function(){
-	
-		FB.getLoginStatus(function(response) {
-			if (response.status === 'connected') {
-				FB.api('/me',function(res){
-					
-					console.log("User ID: "+res.id);
-	
-					$('#fb-id').val(res.id);
-					$('#fb-name').val(res.name);
-	
-					$.ajax({
-						'url': url_base + "api/saveUser",
-						'type': "POST",
-						'dataType': 'json',
-						data: {
-							fb_id: res.id,
-							fb_name: res.name
-						},
-						success: function(res){
-							
-							$('.loading').hide();
-							$('.block').hide();
-	
-							if(res.success){
-								registered = (res.registered && (res.registered == 1 || res.registered == "1"))?true:false;
-							}
-	
-						}
-					});
-	
-				});
-			}  else {
-				FB.login(function(){
-	
-					FB.api('/me',function(res){
-						
-						console.log("User ID: "+res.id);
-	
-						$('#fb-id').val(res.id);
-						$('#fb-name').val(res.name);
-	
-						$.ajax({
-							'url': url_base + "api/saveUser",
-							'type': "POST",
-							'dataType': 'json',
-							data: {
-								fb_id: res.id,
-								fb_name: res.name
-							},
-							success: function(res){
-	
-								if(res.success){
-									registered = (res.registered && (res.registered == 1 || res.registered == "1"))?true:false;
-								}
-	
-							}
-						});
-	
-					});
-	
-				}, {scope: 'publish_actions'});
-			}
-		});
-	
-	},500);
 
     /* index */
     $('#start-button').click(function(){
+
+        $('.loading').show();
+        $('.block').show();
 
         /** **/
         /* check user login */
@@ -166,59 +155,6 @@ $(document).ready(function(){
             }
         });
         /** **/
-
-        /*FB.api('/me/likes/120717091292823',function(res){
-
-            var liked = false;
-
-            console.log(res.data);
-
-            if(res.data.length) liked = true;
-
-            if(liked){
-
-                console.log("You've already liked the page.");
-
-                if(registered)
-                    self.location.href = url_base+"app/upload";
-                else
-                    self.location.href = url_base+"app/register";
-
-            } else {
-
-                $('.block').show();
-
-                $('#like-popup').animate({
-                    opacity: 1,
-                    duration: 500
-                }).show();
-
-                var checkLikeInterval = setInterval(function(){
-
-                    FB.api('/me/likes/120717091292823',function(res){
-
-                        var liked = false;
-
-                        console.log(res.data);
-
-                        if(res.data.length) liked = true;
-
-                        if(liked){
-
-                            if(registered)
-                                self.location.href = url_base+"app/upload";
-                            else
-                                self.location.href = url_base+"app/register";
-
-                        } else
-                            console.log("You haven't liked the page yet.");
-
-                    });
-
-                },1000);
-            }
-
-        });*/
 
     });
 

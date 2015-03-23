@@ -31,28 +31,11 @@
         <script src="<?php echo Uri::base(); ?>public/assets/js/bootstrap.min.js"></script>
         <!-- facebook -->
         <script src="//connect.facebook.net/en_US/sdk.js"></script>
-        <script>
-
-            window.fbAsyncInit = function() {
-                FB.init({
-                    appId      : '439397266212203',
-                    xfbml      : true,
-                    version    : 'v2.2'
-                });
-            };
-
-            (function(d, s, id){
-                var js, fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id)) {return;}
-                js = d.createElement(s); js.id = id;
-                js.src = "//connect.facebook.net/en_US/sdk.js";
-                fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));
-
-        </script>
         <!-- app -->
         <script type="text/javascript">
             var url_base = "<?php echo Uri::base(); ?>";
+            var controller = "<?php echo Uri::segment(1); ?>";
+            var method = "<?php echo Uri::segment(2); ?>";
         </script>
         <script src="<?php echo Uri::base(); ?>public/assets/js/app.js?ts=<?php echo date('YmdHis'); ?>"></script>
     </body>

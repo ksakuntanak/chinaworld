@@ -31,7 +31,7 @@
                 <form class="form-horizontal" action="" method="post" enctype="multipart/form-data" onsubmit="return false;">
                     <input type="hidden" name="fb_id" id="fb-id" value="" />
                     <input type="hidden" name="fb_name" id="fb-name" value="" />
-                    <textarea id="message" class="form-control" style="width: 445px; height: 144px;" placeholder="ใส่คำบรรยายภาพของคุณ..."> #CHINAWORLD 6THANNIVERSARY ที่สุดแห่งศูนย์ฯ ผ้าม้วน ใจกลางพาหุรัด</textarea>
+                    <textarea id="message" class="form-control" style="width: 445px; height: 144px;" placeholder="ใส่คำบรรยายภาพของคุณ..."> #chinaworld6anniversary ที่สุดแห่งศูนย์ฯ ผ้าม้วน ใจกลางพาหุรัด</textarea>
                     <input type="file" id="photo-file" accept="image/*" style="display: none;" />
                     <p class="white-space"></p>
                     <a id="submit-button" class="pull-right" href="javascript:void(0);">
